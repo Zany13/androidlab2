@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Оберіть факультет:" android:textStyle="bold" />
+    <RadioGroup android:id="@+id/rgFaculty" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp">
+        <RadioButton android:id="@+id/rbFiot" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ФІОТ" />
+        <RadioButton android:id="@+id/rbFel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ФЕЛ" />
+        <RadioButton android:id="@+id/rbFpm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ФПМ" />
+    </RadioGroup>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Оберіть курс:" android:textStyle="bold" />
+    <RadioGroup android:id="@+id/rgCourse" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginBottom="24dp">
+        <RadioButton android:id="@+id/rbCourse1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="1" />
+        <RadioButton android:id="@+id/rbCourse2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="2" />
+        <RadioButton android:id="@+id/rbCourse3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="3" />
+        <RadioButton android:id="@+id/rbCourse4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="4" />
+    </RadioGroup>
+
+    <Button android:id="@+id/btnOk" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:text="ОК" />
+</LinearLayout>
