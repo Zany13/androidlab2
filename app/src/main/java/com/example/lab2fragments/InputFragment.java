@@ -1,5 +1,7 @@
 package com.example.lab2fragments;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 public class InputFragment extends Fragment {
 
@@ -21,6 +25,7 @@ public class InputFragment extends Fragment {
         rgFaculty = view.findViewById(R.id.rgFaculty);
         rgCourse = view.findViewById(R.id.rgCourse);
         Button btnOk = view.findViewById(R.id.btnOk);
+        Button btnOpen = view.findViewById(R.id.btnOpen);
 
         btnOk.setOnClickListener(v -> {
             int selectedFacultyId = rgFaculty.getCheckedRadioButtonId();
@@ -32,14 +37,35 @@ public class InputFragment extends Fragment {
                 RadioButton rbFaculty = view.findViewById(selectedFacultyId);
                 RadioButton rbCourse = view.findViewById(selectedCourseId);
 
+                String faculty = rbFaculty.getText().toString();
+                String course = rbCourse.getText().toString();
 
-                ((MainActivity) getActivity()).showResultFragment(rbFaculty.getText().toString(), rbCourse.getText().toString());
+
+                ((MainActivity) getActivity()).showResultFragment(faculty, course);
+
+                String dataToSave = "Факультет: " + faculty + ", Курс: " + course + "\n";
+                saveDataToFile(dataToSave);
             }
         });
 
+        btnOpen.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), HistoryActivity.class);
+            startActivity(intent);
+        });
         return view;
     }
 
+    private void saveDataToFile(String data) {
+        try {
+
+            FileOutputStream fos = requireActivity().openFileOutput("students_data.txt", Context.MODE_APPEND);
+            fos.write(data.getBytes());
+            fos.close();
+            Toast.makeText(getContext(), "Успіх! Дані збережено у файл.", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            Toast.makeText(getContext(), "Помилка збереження даних!", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void clearForm() {
         if (rgFaculty != null) rgFaculty.clearCheck();
